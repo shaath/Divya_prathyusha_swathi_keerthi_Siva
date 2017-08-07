@@ -1,0 +1,16 @@
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+
+public class LoginTest extends JunitMaster
+{
+	@Test
+	public void login()
+	{
+		driver.findElement(By.id("")).sendKeys("Admin");
+		driver.findElement(By.id("")).sendKeys("Admin");
+		driver.findElement(By.id("")).click();
+		driver.findElement(By.id("")).click();
+	}
+
+}

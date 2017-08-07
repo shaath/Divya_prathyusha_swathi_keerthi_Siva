@@ -1,0 +1,56 @@
+package driverscripts;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import methodsEg.OrgMaster;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class Keyword {
+
+	public static void main(String[] args) throws IOException 
+	{
+		OrgMaster om=new OrgMaster();
+		String xlpath="F:\\Evening 9PM New Batch\\SeleniumProject\\src\\com\\SeleniumProject\\TestData\\Keyword.xlsx";
+		FileInputStream fi=new FileInputStream(xlpath);
+		
+		XSSFWorkbook wb=new XSSFWorkbook(fi);
+		XSSFSheet tc_Sht=wb.getSheet("Testcase");
+		XSSFSheet ts_Sht=wb.getSheet("Teststeps");
+		
+		int tc_Rc=tc_Sht.getLastRowNum();
+		int ts_Rc=ts_Sht.getLastRowNum();
+		
+		for (int i = 1; i <= tc_Rc; i++) 
+		{
+			String exe=tc_Sht.getRow(i).getCell(2).getStringCellValue();
+			if (exe.equalsIgnoreCase("Y"))
+			{
+				String tcId=tc_Sht.getRow(i).getCell(0).getStringCellValue();
+				
+				for (int j = 1; j <= ts_Rc; j++) 
+				{
+					String tstcId=ts_Sht.getRow(j).getCell(0).getStringCellValue();
+					
+					if (tcId.equalsIgnoreCase(tstcId))
+					{
+						String key=ts_Sht.getRow(j).getCell(3).getStringCellValue();
+						System.out.println(key);
+						
+					}
+				}
+				
+			}
+			else
+			{
+				tc_Sht.getRow(i).createCell(3).setCellValue("BLOCKED");
+			}
+		}
+		
+		
+	}
+
+}

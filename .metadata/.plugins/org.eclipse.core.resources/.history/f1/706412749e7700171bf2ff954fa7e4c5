@@ -1,0 +1,63 @@
+package stepDefination;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class Login_Logout_Test 
+{
+	public static WebDriver driver;
+	@Given("^Browser Should launch navigate to url$")
+	public void browser_Should_launch_navigate_to_url() throws Throwable 
+	{
+	    driver=new FirefoxDriver();
+	    driver.get("http://opensource.demo.orangehrmlive.com");
+	}
+
+	@When("^Tester Enters username and password$")
+	public void tester_Enters_username_and_password() throws Throwable
+	{
+	   driver.findElement(By.id("txtUsername")).sendKeys("Admin");
+	   driver.findElement(By.id("txtPassword")).sendKeys("admin");
+	}
+
+	@When("^Clicks on login$")
+	public void clicks_on_login() throws Throwable
+	{
+		driver.findElement(By.id("btnLogin")).click();
+	}
+
+	@Then("^Welcome Admin Message displayed$")
+	public void welcome_Admin_Message_displayed() throws Throwable 
+	{
+	  String expval="Welcme Admin";
+	  String actval=driver.findElement(By.partialLinkText("Welcome")).getText();
+	  Assert.assertEquals(expval, actval);
+	}
+
+	@When("^Tester clicks on welcome admin link$")
+	public void tester_clicks_on_welcome_admin_link() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@When("^also clicks on logout$")
+	public void also_clicks_on_logout() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^Login page displayed$")
+	public void login_page_displayed() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+
+
+}

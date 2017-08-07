@@ -1,0 +1,7 @@
+Feature: OrangeHRM Login and Logout
+
+	Scenario: Login Test
+	 Given Browser Should launch navigate to url
+	 When Tester Enters username and password
+	 And Clicks on login
+	 Then Welcome Admin Message displayed
